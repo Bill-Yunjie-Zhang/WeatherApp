@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import BuildCard from './components/BuildCards'
-import { Menu, Segment, Container, Input } from 'semantic-ui-react'
+import { Grid,Menu, Segment, Container, Input } from 'semantic-ui-react'
 
 class App extends React.Component {
     constructor(props) {
@@ -75,19 +75,29 @@ class App extends React.Component {
                     </form>
                 </Segment>
                 <Container>
-                    <BuildCard items={this.state.items} />
+                    {/* <Grid relaxed columns={4}> */}
+                        {/* <Grid.Row> */}
+                            <BuildCard items={this.state.items} />
+                        {/* </Grid.Row> */}
+                    {/* </Grid> */}
                 </Container>
             </div>
       );
     }
   
-    handleChange(e) {
-        this.setState({ city: e.target.value });
+    handleChange(ev) {
+        this.setState({ city: ev.target.value });
     }
   
-    handleSubmit(e) {
-        e.preventDefault();
-        const that = this 
+    // handleDelete = itId => {
+    //     const items = this.state.items.filter(iem = item.id !== itemId)；
+    //     this.setState({
+    //         items: items
+    //     })
+    // }
+
+    handleSubmit(ev) {
+        ev.preventDefault();
         if (!this.state.city.length) {
             return;
         } else{

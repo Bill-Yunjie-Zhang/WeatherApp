@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import BuildCard from './components/BuildCards'
-import { Grid,Menu, Segment, Container, Input } from 'semantic-ui-react'
+import { Menu, Segment, Container, Input, Card } from 'semantic-ui-react'
 
 class App extends React.Component {
     constructor(props) {
@@ -13,6 +13,7 @@ class App extends React.Component {
       };
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleDelete = this.handleDelete.bind(this);
     }
 
     getWeatherData(city, unit){
@@ -75,11 +76,11 @@ class App extends React.Component {
                     </form>
                 </Segment>
                 <Container>
-                    {/* <Grid relaxed columns={4}> */}
-                        {/* <Grid.Row> */}
-                            <BuildCard items={this.state.items} />
-                        {/* </Grid.Row> */}
-                    {/* </Grid> */}
+                    <Card.Group>
+                        {this.state.items.map(item => (
+                            <BuildCard item={item} key={item.id} id={item.id} onDelete={this.handleDelete}/>
+                        ))}
+                    </Card.Group>
                 </Container>
             </div>
       );
@@ -88,13 +89,13 @@ class App extends React.Component {
     handleChange(ev) {
         this.setState({ city: ev.target.value });
     }
-  
-    // handleDelete = itId => {
-    //     const items = this.state.items.filter(iem = item.id !== itemId)；
-    //     this.setState({
-    //         items: items
-    //     })
-    // }
+    
+    handleDelete(itemId){
+        const items = this.state.items.filter(function(item){
+            return item.id !== itemId
+        })
+        this.setState({items: items})
+    }
 
     handleSubmit(ev) {
         ev.preventDefault();

@@ -2,9 +2,6 @@ import React from 'react'
 import { Button, Card } from 'semantic-ui-react'
 
 class BuildCard extends React.Component{
-    constructor(props){
-        super(props)
-    }
     render(){
         // console.log("this.props", this.props)
         var item = this.props.item
@@ -20,7 +17,7 @@ class BuildCard extends React.Component{
                     <Card.Description>latitude: {item.lat}</Card.Description>
                 </Card.Content>
                 <Button.Group attached="bottom" size='large'>
-                    <Button color="green"> Refresh</Button>
+                    <Button color="green" onClick={() => this.props.onRefresh(this.props.id)}> Refresh</Button>
                     <Button.Or />
                     <Button onClick={() => this.props.onDelete(this.props.id)}>Delete</Button>
                 </Button.Group>

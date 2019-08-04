@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import BuildCard from './components/BuildCards'
 import { Menu, Segment, Container, Input, Card } from 'semantic-ui-react'
+import { isFlowBaseAnnotation } from '@babel/types';
 
 class App extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class App extends React.Component {
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleDelete = this.handleDelete.bind(this);
+      this.handleRefresh = this.handleRefresh.bind(this);
     }
 
     getWeatherData(city, unit){
@@ -37,7 +39,6 @@ class App extends React.Component {
             var lon = coordData.lon
             var lat = coordData.lat
             const newItem = {
-                city: thisComponent.state.city,
                 cityName: cityName,
                 temp: temp,
                 description: description,
@@ -56,6 +57,49 @@ class App extends React.Component {
             console.log(err)
         })
     }
+
+    // RefreshWeatherData(city, unit, index){
+    //     const thisComponent = this
+    //     // console.log(thisComponent.state.items)
+    //     axios.get('https://api.openweathermap.org/data/2.5/weather?q='+ /*city**/ "boston" + '&APPID=eda439d629165a345559e6e9043cf085&units=' + unit)
+    //     .then(function(res){
+    //         const data = res.data
+    //         var cityName = /*city**/ 'boston'
+
+    //         var main = data.main || {}
+    //         var temp = main.temp
+
+    //         var weatherData = data.weather || []
+    //         var weatherDataObject = weatherData[0] || {}
+    //         var description = weatherDataObject.description
+
+    //         var sysData = data.sys || {}
+    //         var country = sysData.country
+
+    //         var coordData = data.coord || {}
+    //         var lon = coordData.lon
+    //         var lat = coordData.lat
+    //         const RefreshedItem = {
+    //             cityName: cityName,
+    //             temp: temp,
+    //             description: description,
+    //             country: country,
+    //             lon: lon,
+    //             lat: lat,
+    //         };
+    //         // console.log("RefreshedItem", RefreshedItem)
+    //         const newItemsh = thisComponent.state.items
+    //         const newItems = newItemsh.splice(index-1, 1, RefreshedItem)
+    //         thisComponent.setState(state => ({
+    //             items: newItems,
+    //             city: '',
+    //             response: {}
+    //         }))
+    //     })
+    //     .catch(function(err){
+    //         console.log(err)
+    //     })
+    // }
 
     render() {
         return (
@@ -77,8 +121,9 @@ class App extends React.Component {
                 </Segment>
                 <Container>
                     <Card.Group>
+                        {console.log("this.state.items", this.state.items)}
                         {this.state.items.map(item => (
-                            <BuildCard item={item} key={item.id} id={item.id} onDelete={this.handleDelete}/>
+                            <BuildCard item={item} key={item.id} id={item.id} onDelete={this.handleDelete} onRefresh={this.handleRefresh}/>
                         ))}
                     </Card.Group>
                 </Container>
@@ -95,6 +140,18 @@ class App extends React.Component {
             return item.id !== itemId
         })
         this.setState({items: items})
+    }
+
+    handleRefresh(itemId){
+        const refreshItem = this.state.items.find(function(item){
+            return item.id === itemId
+        })
+        const name = refreshItem.cityName
+        this.getWeatherData(name, 'metric')
+        this.handleDelete(itemId)
+        // const index = this.state.items.indexOf(refreshItem)
+        // const name = refreshItem.cityName
+        // this.RefreshWeatherData(name, 'metric', index)
     }
 
     handleSubmit(ev) {

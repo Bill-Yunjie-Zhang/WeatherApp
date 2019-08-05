@@ -8,7 +8,6 @@ class Cards extends React.Component{
         var item = this.props.item
         var seconds = this.props.seconds
         var minutes = this.props.minutes
-        var hours = this.props.hours
         var onDelete = this.props.onDelete
         var onRefresh = this.props.onRefresh
         return (

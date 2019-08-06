@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios'
-import BuildCard from '../components/BuildCards'
 import { Menu, Segment, Container, Input, Card } from 'semantic-ui-react'
+import BuildCard from '../components/BuildCardsForWeather'
+
 
 class WeatherScreen extends React.Component {
     constructor(props) {
@@ -38,7 +39,7 @@ class WeatherScreen extends React.Component {
             var lon = coordData.lon
             var lat = coordData.lat
             const newItem = {
-                cityName: cityName,
+                cityName: cityName, 
                 temp: temp,
                 description: description,
                 country: country,
@@ -115,5 +116,6 @@ class WeatherScreen extends React.Component {
         }
     }
 }
+
 
 export default WeatherScreen

@@ -4,7 +4,6 @@ import { Button, Card } from 'semantic-ui-react'
 
 class Cards extends React.Component{
     render(){
-        // console.log(this.props.onDelete)
         var item = this.props.item
         var seconds = this.props.seconds
         var minutes = this.props.minutes
@@ -31,5 +30,6 @@ class Cards extends React.Component{
         )
     }
 }
+
 
 export default Cards

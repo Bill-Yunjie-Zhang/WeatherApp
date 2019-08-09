@@ -4,8 +4,7 @@ import { Container,Jumbotron} from 'react-bootstrap'
 
 class HomeScreen extends React.Component{
     render(){
-        const style = {
-            height: 500, 
+        const style = { 
             marginTop: 50,
             backgroundColor: "#1a1a1a", 
             color: "#ffffff",

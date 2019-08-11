@@ -46,19 +46,21 @@ class ForcastScreen extends React.Component{
         return (
             <div>
                 <Segment inverted>
-                    <form onSubmit={this.handleSubmit}>
-                        <Menu inverted secondary>
-                            <Menu.Item position="left">
-                                <h1>Weather</h1>
-                            </Menu.Item>
-                            <Menu.Item>
-                                <h1>Get forcasts!!!</h1>
-                            </Menu.Item>
-                            <Menu.Item position='right'>
-                                <Input action='Check' id="new-city" placeholder='City...' onChange={this.handleChange} value={this.state.city}/>
-                            </Menu.Item>
-                        </Menu>
-                    </form>
+                    <Container>
+                        <form onSubmit={this.handleSubmit}>
+                            <Menu inverted secondary>
+                                <Menu.Item position="left">
+                                    <h1>Weather</h1>
+                                </Menu.Item>
+                                <Menu.Item>
+                                    <h1>Get forcasts!!!</h1>
+                                </Menu.Item>
+                                <Menu.Item position='right'>
+                                    <Input action='Check' id="new-city" placeholder='City...' onChange={this.handleChange} value={this.state.city}/>
+                                </Menu.Item>
+                            </Menu>
+                        </form>
+                    </Container>
                 </Segment>
                 <Container>
                         {this.state.items.map(item => (

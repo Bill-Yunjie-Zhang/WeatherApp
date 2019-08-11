@@ -62,6 +62,7 @@ class WeatherScreen extends React.Component {
         return (
             <div>
                 <Segment inverted>
+                    <Container>
                     <form onSubmit={this.handleSubmit}>
                         <Menu inverted secondary>
                             <Menu.Item position="left">
@@ -75,6 +76,7 @@ class WeatherScreen extends React.Component {
                             </Menu.Item>
                         </Menu>
                     </form>
+                    </Container>
                 </Segment>
                 <Container>
                     <Card.Group>
@@ -86,7 +88,7 @@ class WeatherScreen extends React.Component {
             </div>
       );
     }
-  
+
     handleChange(ev) {
         this.setState({ city: ev.target.value });
     }

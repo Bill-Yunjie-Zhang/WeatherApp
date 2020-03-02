@@ -17,7 +17,7 @@ class HomeScreen extends React.Component{
                 <hr style={{backgroundColor: "#ffffff", margin: 10}}/>
                 <h2>
                     <strong>Weather</strong>: <br/>
-                    This allow you to add the current weather info of any city. 
+                    This allows you to add the current weather info of any city. 
                     The system will automatically refresh every hour. 
                     But if you want to check the accurate info of the moment when checking, click the "refresh" button. 
                     Click the "delete" button to delete any unwanted weather info.
